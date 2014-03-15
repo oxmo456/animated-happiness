@@ -25,9 +25,7 @@ angular.module("bootstrap-ui").directive("modal", function ($templateCache, $com
                 modalScope.$destroy();
                 modalContent = null;
                 modalScope = null;
-                $element.removeClass("in");
                 $element.css("display", "none");
-
             }
 
             this.show = function (context, templateId) {
@@ -42,7 +40,6 @@ angular.module("bootstrap-ui").directive("modal", function ($templateCache, $com
                 containerElement.append(templateElement);
                 modalContent = templateElement;
                 modalScope = scope;
-                $element.addClass("in");
                 $element.css("display", "block");
             };
 
