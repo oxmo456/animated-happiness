@@ -1,4 +1,7 @@
 <div class="stickies">
-    <div ng-repeat="stickyNote in stickies" sticky-note="stickyNote">
+    <div ng-repeat="stickyNote in stickies"
+         sticky-note="stickyNote"
+         on-delete="onDeleteStickyNote(stickyNote)"
+         on-edit="onEditStickyNote(stickyNote)">
     </div>
 </div>

@@ -19,7 +19,8 @@ angular.module("stickies").directive("stickyNote", function () {
         replace: true,
         scope: {
             stickyNote: "=",
-            onDelete: "&"
+            onDelete: "&",
+            onEdit: "&"
         },
         link: function (scope, element) {
 
