@@ -36,11 +36,12 @@
                         ng-model="stickyNote.themeId"
                         ng-options="theme.id as theme.name for theme in themes"></select>
             </div>
-            <div class="form-group">
-                <label>date</label>
-                <input type="text"
-                       class="form-control"
-                       ng-model="stickyNote.date"/>
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>date</label>
+
+                    <div date="stickyNote.date"></div>
+                </div>
             </div>
         </div>
     </script>
