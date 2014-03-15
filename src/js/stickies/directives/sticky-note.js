@@ -1,5 +1,8 @@
 angular.module("stickies").directive("stickyNote", function () {
 
+
+
+
     return {
         restrict: "A",
         templateUrl: "/templates/stickies/directives/sticky-note.template.html",
@@ -8,6 +11,9 @@ angular.module("stickies").directive("stickyNote", function () {
             stickyNote: "="
         },
         link: function (scope, element, attrs) {
+
+
+
         }
     };
 
