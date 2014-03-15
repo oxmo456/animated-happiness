@@ -34,6 +34,8 @@ angular.module("app").controller("MainController", function ($scope, StickiesSto
 
         console.log("edit", stickyNote);
 
+        $scope.modal.show({stickyNote: stickyNote}, "editStickyNoteModal");
+
     };
 
     $scope.deleteStickyNote = function (stickyNote) {

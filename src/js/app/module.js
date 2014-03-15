@@ -1,1 +1,1 @@
-angular.module("app", ["utils", "stickies"]);
+angular.module("app", ["utils", "bootstrap-ui", "stickies"]);

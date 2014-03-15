@@ -21,6 +21,21 @@
          on-edit-sticky-note-meta="editStickyNoteMeta(stickyNote)">
     </div>
 
+    <div modal="modal">
+    </div>
+
+    <script type="text/ng-template" id="editStickyNoteModal">
+        <div class="modal-header">
+            {{stickyNote}}
+        </div>
+        <div class="modal-body">
+            BODY
+        </div>
+        <div class="modal-footer">
+            FOOTER
+        </div>
+    </script>
+
 </div>
 <script type="text/javascript" src="components/angular/angular.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
