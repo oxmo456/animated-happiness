@@ -49,11 +49,6 @@ angular.module("bootstrap-ui").directive("modal", function ($templateCache, $com
 
             initialize.bind(this)();
 
-        },
-        link: function (scope, element, attrs) {
-            console.log("... POPO");
-
-
         }
     };
 

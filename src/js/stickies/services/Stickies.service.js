@@ -5,12 +5,6 @@ angular.module("stickies").service("Stickies", function Stickies() {
 
     }
 
-    this.createStickyNote = function () {
-
-        console.log("create...");
-
-    };
-
 
     initialize();
 
