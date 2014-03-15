@@ -5,7 +5,7 @@ angular.module("app").controller("MainController", function ($scope, StickiesSto
         {name: "Blue", id: "blue"},
         {name: "Red", id: "red"},
         {name: "Green", id: "green"},
-        {name: "Black", id: "black"},
+        {name: "Black", id: "black"}
     ];
 
     var DEFAULT_THEME_ID = STICKY_NOTES_THEMES[0].id;
