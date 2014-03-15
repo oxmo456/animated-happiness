@@ -33,7 +33,9 @@
             <div class="form-horizontal">
                 <div class="form-group">
                     <label>color</label>
-                    <select class="form-control">
+                    <select class="form-control"
+                            ng-model="stickyNote.themeId" ng-options="theme.id as theme.name for theme in themes"
+                            >
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
