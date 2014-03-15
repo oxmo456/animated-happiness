@@ -4,7 +4,7 @@ angular.module("stickies").directive("stickies", function () {
         restrict: "A",
         scope: {
             stickies: "=",
-            onEditStickyNote: "&",
+            onEditStickyNoteMeta: "&",
             onDeleteStickyNote: "&"
         },
         templateUrl: "/templates/stickies/directives/stickies.template.html",

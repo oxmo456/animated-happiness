@@ -1,12 +1,5 @@
 <div class="sticky-note" drag positionable px="stickyNote.position.x" py="stickyNote.position.y">
-    <div class="tool-bar">
-        <span class="delete-button" ng-click="onDelete(stickyNote)">
-            <i class="glyphicon glyphicon-remove"></i>
-        </span>
-        <span class="edit-button" ng-click="onEdit({stickyNote:stickyNote})">
-            <i class="glyphicon glyphicon-edit"></i>
-        </span>
-    </div>
+    <div ng-transclude></div>
     <textarea cols="30"
               rows="10"
               prevent-drag

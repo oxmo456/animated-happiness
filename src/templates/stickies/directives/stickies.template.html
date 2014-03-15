@@ -1,7 +1,13 @@
 <div class="stickies">
     <div ng-repeat="stickyNote in stickies"
-         sticky-note="stickyNote"
-         on-delete="onDeleteStickyNote(stickyNote)"
-         on-edit="onEditStickyNote(stickyNote)">
+         sticky-note="stickyNote">
+        <div class="tool-bar">
+        <span class="delete-button" ng-click="onDeleteStickyNote({stickyNote:stickyNote})">
+            <i class="glyphicon glyphicon-remove"></i>
+        </span>
+        <span class="edit-button" ng-click="onEditStickyNoteMeta({stickyNote:stickyNote})">
+            <i class="glyphicon glyphicon-edit"></i>
+        </span>
+        </div>
     </div>
 </div>
