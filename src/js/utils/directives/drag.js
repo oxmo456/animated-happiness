@@ -43,9 +43,6 @@ angular.module("utils").directive("drag", function ($window) {
                 $window.cancelAnimationFrame(animationFrameRequestId);
                 windowElement.off("mousemove", windowMouseMove);
                 windowElement.off("mouseup", windowElementMouseUp);
-                scope.$apply(function () {
-                    scope.$emit(DRAG_END, element);
-                });
             }
 
             function elementMouseDown(event) {
@@ -57,9 +54,6 @@ angular.module("utils").directive("drag", function ($window) {
                     animationFrameRequestId = $window.requestAnimationFrame(update);
                     windowElement.on(MOUSE_MOVE, windowMouseMove);
                     windowElement.on(MOUSE_UP, windowElementMouseUp);
-                    scope.$apply(function () {
-                        scope.$emit(DRAG_START, element);
-                    });
                 }
             }
 

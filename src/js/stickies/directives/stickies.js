@@ -7,7 +7,14 @@ angular.module("stickies").directive("stickies", function () {
         },
         templateUrl: "/templates/stickies/directives/stickies.template.html",
         replace: true,
-        link: function (scope, element, attribute) {
+        controller: function stickies($scope, $element, $attrs) {
+
+
+            this.setSelectedStickyNote = function (sticky) {
+                console.log(sticky);
+            };
+
+
             console.log("link...");
         }
     };
