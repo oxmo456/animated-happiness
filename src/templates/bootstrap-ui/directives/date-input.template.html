@@ -1,7 +1,7 @@
 <div>
     <select class="form-control"
             ng-model="year"
-            ng-options="theme.id as theme.name for theme in themes"></select>
+            ng-options="year.value as year.label for year in years"></select>
     <select class="form-control"
             ng-model="month"
             ng-options="theme.id as theme.name for theme in themes"></select>
