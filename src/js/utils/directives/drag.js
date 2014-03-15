@@ -6,6 +6,8 @@ angular.module("utils").directive("drag", function ($window) {
     var MOUSE_DOWN = "mousedown";
     var MOUSE_UP = "mouseup";
     var MOUSE_MOVE = "mousemove";
+    var DRAG_START = "drag_start";
+    var DRAG_END = "drag_end";
 
     return {
         restrict: "A",
@@ -41,6 +43,9 @@ angular.module("utils").directive("drag", function ($window) {
                 $window.cancelAnimationFrame(animationFrameRequestId);
                 windowElement.off("mousemove", windowMouseMove);
                 windowElement.off("mouseup", windowElementMouseUp);
+                scope.$apply(function () {
+                    scope.$emit(DRAG_END, element);
+                });
             }
 
             function elementMouseDown(event) {
@@ -52,6 +57,9 @@ angular.module("utils").directive("drag", function ($window) {
                     animationFrameRequestId = $window.requestAnimationFrame(update);
                     windowElement.on(MOUSE_MOVE, windowMouseMove);
                     windowElement.on(MOUSE_UP, windowElementMouseUp);
+                    scope.$apply(function () {
+                        scope.$emit(DRAG_START, element);
+                    });
                 }
             }
 
