@@ -5,6 +5,7 @@
         <span class="delete-button" ng-click="onDeleteStickyNote({stickyNote:stickyNote})">
             <i class="glyphicon glyphicon-remove"></i>
         </span>
+            <span class="title">{{stickyNote.date | date:'yyyy-MM-dd'}}</span>
         <span class="edit-button" ng-click="onEditStickyNoteMeta({stickyNote:stickyNote})">
             <i class="glyphicon glyphicon-edit"></i>
         </span>
