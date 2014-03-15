@@ -68,7 +68,9 @@ angular.module("bootstrap-ui").directive("dateInput", function ($locale) {
                 var newDate = new Date(scope.year, scope.month, scope.day);
                 scope.validDate = dateIsValid(newDate);
                 if (scope.validDate) {
-                    scope.date = new Date(scope.year, scope.month, scope.day).toString();
+                    scope.seletedDate = new Date(scope.year, scope.month, scope.day).toISOString();
+                    console.log(scope.seletedDate);
+
                 }
             }
 
