@@ -1,1 +1,1 @@
-angular.module("stickies",[]);
+angular.module("stickies", ["utils"]);

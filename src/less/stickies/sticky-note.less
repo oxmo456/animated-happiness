@@ -1,0 +1,57 @@
+@import "../mixins/transition";
+@import "../mixins/box-shadow";
+@import "../mixins/prevent-selection";
+@import "../mixins/clear-both";
+
+@post-it-color: #FFFFA5;
+
+.sticky-note {
+  .prevent-selection();
+  .transition(-webkit-box-shadow,200ms,ease-in-out);
+  .transition(box-shadow,200ms,ease-in-out);
+
+  padding: 5px 5px 0 5px;
+  position: absolute;
+
+  background: @post-it-color;
+
+  .tool-bar {
+    .transition(opacity,200ms,ease-in-out);
+    margin-bottom: 2px;
+    opacity: 0.1;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:after {
+      .clear-both();
+    }
+
+    .delete-button,
+    .edit-button {
+      cursor: pointer;
+      float: right;
+      margin-left: 2px;
+    }
+
+  }
+
+  &.dragged {
+    z-index: 1;
+    .box-shadow(0,0,10px,0.1px,rgba(0,0,0,0.75));
+
+  }
+
+  textarea {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    &:focus {
+      outline: none;
+    }
+
+  }
+
+}

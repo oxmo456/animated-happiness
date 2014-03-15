@@ -125,7 +125,8 @@ module.exports = function (grunt) {
         less: {
             dev: {
                 files: {
-                    "server/css/styles.css": ["src/less/styles.less"]
+                    "server/css/styles.css": ["src/less/styles.less"],
+                    "server/css/stickies.css": ["src/less/stickies/styles.less"]
                 }
             }
         },
