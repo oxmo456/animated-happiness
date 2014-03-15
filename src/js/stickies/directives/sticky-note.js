@@ -1,7 +1,17 @@
 angular.module("stickies").directive("stickyNote", function () {
 
+    var MOUSE_DOWN = "mousedown";
+    var FOCUSED = "focused";
 
+    var elementOnTop = null;
 
+    function giveFocusTo(element) {
+        if (elementOnTop) {
+            elementOnTop.removeClass(FOCUSED);
+        }
+        elementOnTop = element;
+        elementOnTop.addClass(FOCUSED);
+    }
 
     return {
         restrict: "A",
@@ -10,10 +20,13 @@ angular.module("stickies").directive("stickyNote", function () {
         scope: {
             stickyNote: "="
         },
-        link: function (scope, element, attrs) {
+        link: function (scope, element) {
 
+            function elementMouseDown() {
+                giveFocusTo(element);
+            }
 
-            element.onMouseDown()
+            element.on(MOUSE_DOWN, elementMouseDown);
 
         }
     };
