@@ -31,17 +31,11 @@ angular.module("app").controller("MainController", function ($scope, StickiesSto
     };
 
     $scope.editStickyNoteMeta = function (stickyNote) {
-
-        console.log("edit", stickyNote);
-
         $scope.modal.show({stickyNote: stickyNote}, "editStickyNoteModal");
-
     };
 
     $scope.deleteStickyNote = function (stickyNote) {
-
         console.log("delete", stickyNote);
-
     };
 
     initialize();
