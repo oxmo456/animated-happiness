@@ -52,6 +52,18 @@ angular.module("utils").directive("positionable", function ($parse) {
                 }
             };
 
+            this.increasePositionX = function (value) {
+                if (angular.isNumber(value)) {
+                    positionXSetter($scope, positionXGetter($scope) + value);
+                }
+            };
+
+            this.increasePositionY = function (value) {
+                if (angular.isNumber(value)) {
+                    positionYSetter($scope, positionYGetter($scope) + value);
+                }
+            };
+
             initialize();
 
 

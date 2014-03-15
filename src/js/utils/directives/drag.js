@@ -3,6 +3,9 @@ angular.module("utils").directive("drag", function ($window) {
     var MOUSE_LEFT_BUTTON = 0;
     var DRAGGED = "dragged";
     var windowElement = angular.element($window);
+    var MOUSE_DOWN = "mousedown";
+    var MOUSE_UP = "mouseup";
+    var MOUSE_MOVE = "mousemove";
 
     return {
         restrict: "A",
@@ -10,33 +13,27 @@ angular.module("utils").directive("drag", function ($window) {
         link: function (scope, element, attrs, positionableController) {
             var mouseX;
             var mouseY;
-            var x;
-            var y;
+            var dx;
+            var dy;
             var animationFrameRequestId;
 
             function initialize() {
-                x = element.css("left") || 0;
-                y = element.css("top") || 0;
-                element.on("mousedown", elementMouseDown);
+                element.on(MOUSE_DOWN, elementMouseDown);
             }
 
-
             function windowMouseMove(event) {
-                var dx = event.clientX - mouseX;
-                var dy = event.clientY - mouseY;
+                dx = event.clientX - mouseX;
+                dy = event.clientY - mouseY;
                 mouseX = event.clientX;
                 mouseY = event.clientY;
-                x += dx;
-                y += dy;
+                animationFrameRequestId = $window.requestAnimationFrame(update);
             }
 
             function update() {
-                positionableController.setPositionX(x);
-                positionableController.setPositionY(y);
                 scope.$apply(function () {
-
+                    positionableController.increasePositionX(dx);
+                    positionableController.increasePositionY(dy);
                 });
-                animationFrameRequestId = $window.requestAnimationFrame(update);
             }
 
             function windowElementMouseUp() {
@@ -53,11 +50,10 @@ angular.module("utils").directive("drag", function ($window) {
                     mouseX = event.clientX;
                     mouseY = event.clientY;
                     animationFrameRequestId = $window.requestAnimationFrame(update);
-                    windowElement.on("mousemove", windowMouseMove);
-                    windowElement.on("mouseup", windowElementMouseUp);
+                    windowElement.on(MOUSE_MOVE, windowMouseMove);
+                    windowElement.on(MOUSE_UP, windowElementMouseUp);
                 }
             }
-
 
             initialize();
 
