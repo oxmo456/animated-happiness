@@ -52,10 +52,11 @@ angular.module("bootstrap-ui").directive("dateInput", function ($locale) {
                 scope.years = YEARS;
                 scope.months = MONTHS;
                 scope.days = DAYS;
-                if (angular.isDate(scope.date)) {
-                    scope.year = scope.date.getFullYear();
-                    scope.month = scope.date.getMonth();
-                    scope.day = scope.date.getDate();
+                var date = new Date(scope.date);
+                if (dateIsValid(date)) {
+                    scope.year = date.getFullYear();
+                    scope.month = date.getMonth();
+                    scope.day = date.getDate();
                 }
                 scope.$watch("year", updateDate);
                 scope.$watch("month", updateDate);
@@ -64,14 +65,11 @@ angular.module("bootstrap-ui").directive("dateInput", function ($locale) {
 
 
             function updateDate() {
-                console.log("UPDATE DATE...");
-
                 var newDate = new Date(scope.year, scope.month, scope.day);
-                if (dateIsValid(newDate)) {
-                    scope.date = new Date(scope.year, scope.month, scope.day);
+                scope.validDate = dateIsValid(newDate);
+                if (scope.validDate) {
+                    scope.date = new Date(scope.year, scope.month, scope.day).toString();
                 }
-
-                //
             }
 
             initialize();

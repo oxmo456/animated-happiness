@@ -32,7 +32,7 @@ angular.module("app").controller("MainController", function ($scope, StickiesSto
         $scope.stickies.push({
             text: "",
             themeId: DEFAULT_THEME_ID,
-            date: new Date(),
+            date: (new Date()).toString(),
             position: {
                 x: 0,
                 y: 0

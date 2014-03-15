@@ -8,5 +8,6 @@
     <select class="form-control"
             ng-model="day"
             ng-options="day.value as day.label for day in days"></select>
+    <span ng-hide="validDate"><i class="glyphicon glyphicon-warning-sign"></i></span>
 
 </div>
