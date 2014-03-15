@@ -26,14 +26,13 @@
 
     <script type="text/ng-template" id="editStickyNoteModal">
         <div class="modal-header">
-            {{stickyNote}}
-            <textarea ng-model="stickyNote.text"></textarea>
+            <button type="button" class="close" aria-hidden="true" ng-click="close()">×</button>
+            <h4 class="modal-title" id="myModalLabel">Edit sticky note</h4>
         </div>
         <div class="modal-body">
-            {{stickyNote}}
+            <textarea ng-model="stickyNote.text"></textarea>
         </div>
         <div class="modal-footer">
-            {{stickyNote}}
         </div>
     </script>
 

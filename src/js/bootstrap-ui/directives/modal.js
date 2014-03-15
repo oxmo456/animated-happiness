@@ -7,7 +7,8 @@ angular.module("bootstrap-ui").directive("modal", function ($templateCache, $com
         templateUrl: "/templates/bootstrap-ui/directives/modal.template.html",
         replace: true,
         controller: function ($scope, $element, $attrs) {
-            var currentModalContent;
+            var modalContent;
+            var modalScope;
             var containerElement;
 
             function initialize() {
@@ -19,18 +20,34 @@ angular.module("bootstrap-ui").directive("modal", function ($templateCache, $com
                 containerElement = $element.children().children();
             }
 
+            function closeModal() {
+                modalContent.remove();
+                modalScope.$destroy();
+                modalContent = null;
+                modalScope = null;
+                $element.removeClass("in");
+                $element.css("display", "none");
+
+            }
+
             this.show = function (context, templateId) {
                 var scope = $scope.$new(true);
                 angular.forEach(context, function (value, key) {
                     scope[key] = value;
                 });
+                scope.close = closeModal;
                 var template = $templateCache.get(templateId);
                 var templateElement = angular.element(template);
                 $compile(templateElement)(scope);
                 containerElement.append(templateElement);
-                currentModalContent = templateElement;
+                modalContent = templateElement;
+                modalScope = scope;
+                $element.addClass("in");
+                $element.css("display", "block");
+            };
 
-                console.log("???", $element);
+            this.close = function () {
+                closeModal();
             };
 
             initialize.bind(this)();
