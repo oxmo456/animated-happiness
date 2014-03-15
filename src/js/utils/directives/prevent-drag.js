@@ -1,23 +1,10 @@
-angular.module("utils").directive("preventDrag", function ($window) {
-
-    var windowElement = angular.element($window);
+angular.module("utils").directive("preventDrag", function () {
 
     return {
         restrict: "A",
-        link: function (scope, element, attribute) {
-
-            function elementMouseDown(event) {
-                event.stopImmediatePropagation();
-            }
-
-            element.on("mousedown", elementMouseDown);
-
-
-            element.on("$destroy", function destroy() {
-                element.off("mousedown", elementMouseDown);
-                element.off("$destroy", destroy);
-            });
-
+        require: "drag",
+        link: function (scope, element, dragController) {
+            dragController.excludeTarget(element);
         }
     };
 

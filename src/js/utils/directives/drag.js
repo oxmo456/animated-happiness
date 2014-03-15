@@ -12,15 +12,31 @@ angular.module("utils").directive("drag", function ($window) {
     return {
         restrict: "A",
         require: "positionable",
+        controller: function () {
+
+            var excludedTargets = [];
+
+            this.excludeTarget = function (target) {
+                console.log();
+                excludedTargets.push(target);
+            };
+
+            this.targetIsExcluded = function (target) {
+                return false;
+            };
+
+        },
         link: function (scope, element, attrs, positionableController) {
             var mouseX;
             var mouseY;
             var dx;
             var dy;
             var animationFrameRequestId;
+            var controller;
 
             function initialize() {
                 element.on(MOUSE_DOWN, elementMouseDown);
+                controller = element.controller("drag");
             }
 
             function windowMouseMove(event) {
@@ -45,8 +61,12 @@ angular.module("utils").directive("drag", function ($window) {
                 windowElement.off("mouseup", windowElementMouseUp);
             }
 
+            function canStartDrag(event) {
+                return event.button === MOUSE_LEFT_BUTTON && !event.defaultPrevented;
+            }
+
             function elementMouseDown(event) {
-                if (event.button === MOUSE_LEFT_BUTTON) {
+                if (canStartDrag(event)) {
                     event.preventDefault();
                     element.addClass(DRAGGED);
                     mouseX = event.clientX;
