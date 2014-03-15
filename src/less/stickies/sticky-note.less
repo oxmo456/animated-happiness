@@ -3,7 +3,12 @@
 @import "../mixins/prevent-selection";
 @import "../mixins/clear-both";
 
-@post-it-color: #FFFFA5;
+@post-it: #FFFFA5;
+@blue: #00F;
+@black: #000;
+@yellow: #FF0;
+@green: #8CA77D;
+@red: #E22211;
 
 .sticky-note {
   .prevent-selection();
@@ -12,12 +17,42 @@
   padding: 5px 5px 0 5px;
   position: absolute;
 
-  background: @post-it-color;
+  background: @post-it;
+
+  &.post-it {
+    background: @post-it;
+  }
+
+  &.yellow {
+    background: @yellow;
+
+  }
+
+  &.green {
+    background: @green;
+    color: #415035;
+
+  }
+
+  &.blue {
+    background: @blue;
+
+  }
+
+  &.red {
+    background: @red;
+    color: #FFF500;
+  }
+
+  &.black {
+    background: @black;
+    color: #fff;
+  }
 
   .tool-bar {
     .transition(opacity,200ms,ease-in-out);
     margin-bottom: 2px;
-    opacity: 0.1;
+    opacity: 0.4;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     margin-bottom: 5px;
     cursor: -webkit-grab;
