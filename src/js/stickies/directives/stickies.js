@@ -10,12 +10,16 @@ angular.module("stickies").directive("stickies", function () {
         controller: function stickies($scope, $element, $attrs) {
 
 
-            this.setSelectedStickyNote = function (sticky) {
-                console.log(sticky);
+            $scope.putStickyNoteOnTop = function (stickyNoteIndex) {
+                var stickyNote = $scope.stickies.splice(stickyNoteIndex, 1)[0];
+                $scope.stickies.unshift(stickyNote);
+                var n = 0;
+                angular.forEach($scope.stickies, function (stickyNote) {
+                    stickyNote.zIndex = n++;
+                });
             };
 
 
-            console.log("link...");
         }
     };
 

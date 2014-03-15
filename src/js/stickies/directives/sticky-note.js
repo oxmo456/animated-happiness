@@ -7,13 +7,7 @@ angular.module("stickies").directive("stickyNote", function () {
         scope: {
             stickyNote: "="
         },
-        require: "stickies",
-        link: function (scope, element, attrs, stickiesController) {
-
-            element.on("click", function () {
-                stickiesController.setSelectedStickyNote(scope.stickyNote);
-            });
-
+        link: function (scope, element, attrs) {
         }
     };
 

@@ -13,9 +13,9 @@ angular.module("utils").directive("preventDrag", function ($window) {
             element.on("mousedown", elementMouseDown);
 
 
-            element.on("$destroy", function () {
+            element.on("$destroy", function destroy() {
                 element.off("mousedown", elementMouseDown);
-                element.off("$destroy", arguments.callee);
+                element.off("$destroy", destroy);
             });
 
         }
