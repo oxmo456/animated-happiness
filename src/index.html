@@ -27,12 +27,13 @@
     <script type="text/ng-template" id="editStickyNoteModal">
         <div class="modal-header">
             {{stickyNote}}
+            <textarea ng-model="stickyNote.text"></textarea>
         </div>
         <div class="modal-body">
-            BODY
+            {{stickyNote}}
         </div>
         <div class="modal-footer">
-            FOOTER
+            {{stickyNote}}
         </div>
     </script>
 

@@ -1,4 +1,4 @@
-angular.module("bootstrap-ui").directive("modal", function ($templateCache) {
+angular.module("bootstrap-ui").directive("modal", function ($templateCache, $compile) {
 
     var MODAL = "modal";
 
@@ -6,7 +6,9 @@ angular.module("bootstrap-ui").directive("modal", function ($templateCache) {
         restrict: "A",
         templateUrl: "/templates/bootstrap-ui/directives/modal.template.html",
         replace: true,
-        controller: function ($scope, $attrs) {
+        controller: function ($scope, $element, $attrs) {
+            var currentModalContent;
+            var containerElement;
 
             function initialize() {
                 var publishName = $attrs[MODAL];
@@ -14,17 +16,21 @@ angular.module("bootstrap-ui").directive("modal", function ($templateCache) {
                     throw new Error("Oops...");
                 }
                 $scope[publishName] = this;
+                containerElement = $element.children().children();
             }
 
             this.show = function (context, templateId) {
-                console.log("SHOW", context, templateId);
-
+                var scope = $scope.$new(true);
+                angular.forEach(context, function (value, key) {
+                    scope[key] = value;
+                });
                 var template = $templateCache.get(templateId);
+                var templateElement = angular.element(template);
+                $compile(templateElement)(scope);
+                containerElement.append(templateElement);
+                currentModalContent = templateElement;
 
-
-
-                console.log("???", template);
-
+                console.log("???", $element);
             };
 
             initialize.bind(this)();
