@@ -6,7 +6,8 @@ angular.module("utils").directive("drag", function ($window) {
 
     return {
         restrict: "A",
-        link: function (scope, element, attribute) {
+        require: "positionable",
+        link: function (scope, element, attrs, positionableController) {
             var mouseX;
             var mouseY;
             var x;
@@ -30,8 +31,11 @@ angular.module("utils").directive("drag", function ($window) {
             }
 
             function update() {
-                element.css("left", x + "px");
-                element.css("top", y + "px");
+                positionableController.setPositionX(x);
+                positionableController.setPositionY(y);
+                scope.$apply(function () {
+
+                });
                 animationFrameRequestId = $window.requestAnimationFrame(update);
             }
 

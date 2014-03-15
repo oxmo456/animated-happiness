@@ -5,7 +5,7 @@ angular.module("app").controller("MainController", function ($scope, StickiesSto
         StickiesStorage.save(stickies);
     }
 
-    function stickiesChange(value, previousValue) {
+    function stickiesChange(value) {
         saveStickies(value);
     }
 
@@ -22,7 +22,11 @@ angular.module("app").controller("MainController", function ($scope, StickiesSto
     $scope.addStickyNote = function () {
         $scope.stickies.push({
             text: "",
-            color: ""
+            color: "",
+            position: {
+                x: 0,
+                y: 0
+            }
         });
     };
 
