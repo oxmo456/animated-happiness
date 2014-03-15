@@ -13,6 +13,8 @@ angular.module("stickies").directive("stickyNote", function () {
         link: function (scope, element, attrs) {
 
 
+            element.onMouseDown()
+
         }
     };
 

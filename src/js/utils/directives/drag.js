@@ -6,8 +6,6 @@ angular.module("utils").directive("drag", function ($window) {
     var MOUSE_DOWN = "mousedown";
     var MOUSE_UP = "mouseup";
     var MOUSE_MOVE = "mousemove";
-    var DRAG_START = "drag_start";
-    var DRAG_END = "drag_end";
 
     return {
         restrict: "A",
@@ -16,13 +14,16 @@ angular.module("utils").directive("drag", function ($window) {
 
             var excludedTargets = [];
 
-            this.excludeTarget = function (target) {
-                console.log();
-                excludedTargets.push(target);
+            function rawElement(element) {
+                return element[0];
+            }
+
+            this.excludeElement = function (element) {
+                excludedTargets.push(rawElement(element));
             };
 
-            this.targetIsExcluded = function (target) {
-                return false;
+            this.rawElementIsNotExcluded = function (target) {
+                return excludedTargets.indexOf(target) === -1;
             };
 
         },
@@ -62,12 +63,11 @@ angular.module("utils").directive("drag", function ($window) {
             }
 
             function canStartDrag(event) {
-                return event.button === MOUSE_LEFT_BUTTON && !event.defaultPrevented;
+                return event.button === MOUSE_LEFT_BUTTON && controller.rawElementIsNotExcluded(event.target);
             }
 
             function elementMouseDown(event) {
                 if (canStartDrag(event)) {
-                    event.preventDefault();
                     element.addClass(DRAGGED);
                     mouseX = event.clientX;
                     mouseY = event.clientY;
