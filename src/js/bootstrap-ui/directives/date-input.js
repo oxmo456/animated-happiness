@@ -1,5 +1,6 @@
 angular.module("bootstrap-ui").directive("dateInput", function ($locale) {
 
+    var INVALID_DATE = "Invalid Date";
 
     function extractYears(k) {
         var result = [];
@@ -30,6 +31,10 @@ angular.module("bootstrap-ui").directive("dateInput", function ($locale) {
         return result;
     }
 
+    function dateIsValid(date) {
+        return date && date.toString() !== INVALID_DATE;
+    }
+
     var YEARS = extractYears(10);
     var MONTHS = extractMonths();
     var DAYS = extractDays();
@@ -41,15 +46,35 @@ angular.module("bootstrap-ui").directive("dateInput", function ($locale) {
         scope: {
             date: "=dateInput"
         },
-        link: function (scope, element, attribute) {
-            scope.years = YEARS;
-            scope.months = MONTHS;
-            scope.days = DAYS;
+        link: function (scope) {
+
+            function initialize() {
+                scope.years = YEARS;
+                scope.months = MONTHS;
+                scope.days = DAYS;
+                if (angular.isDate(scope.date)) {
+                    scope.year = scope.date.getFullYear();
+                    scope.month = scope.date.getMonth();
+                    scope.day = scope.date.getDate();
+                }
+                scope.$watch("year", updateDate);
+                scope.$watch("month", updateDate);
+                scope.$watch("day", updateDate);
+            }
 
 
-            scope.year = scope.date.getFullYear();
-            scope.month = scope.date.getMonth();
-            scope.day = scope.date.getDate();
+            function updateDate() {
+                console.log("UPDATE DATE...");
+
+                var newDate = new Date(scope.year, scope.month, scope.day);
+                if (dateIsValid(newDate)) {
+                    scope.date = new Date(scope.year, scope.month, scope.day);
+                }
+
+                //
+            }
+
+            initialize();
 
         }
     };
