@@ -18,7 +18,8 @@ angular.module("stickies").directive("stickyNote", function () {
         templateUrl: "/templates/stickies/directives/sticky-note.template.html",
         replace: true,
         scope: {
-            stickyNote: "="
+            stickyNote: "=",
+            onDelete: "&"
         },
         link: function (scope, element) {
 

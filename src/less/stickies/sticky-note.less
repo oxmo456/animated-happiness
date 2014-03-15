@@ -18,6 +18,9 @@
     .transition(opacity,200ms,ease-in-out);
     margin-bottom: 2px;
     opacity: 0.1;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 5px;
+    cursor: -webkit-grab;
 
     &:hover {
       opacity: 1;
@@ -44,6 +47,12 @@
 
   &.focused {
     z-index: 1;
+  }
+
+  &.dragged {
+    .tool-bar {
+      cursor: -webkit-grabbing;
+    }
   }
 
   textarea {
