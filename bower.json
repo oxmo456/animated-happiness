@@ -6,6 +6,7 @@
     ],
     "dependencies": {
         "angular": "*",
+        "angular-cookies": "*",
         "bootstrap": "*"
     },
     "devDependencies": {

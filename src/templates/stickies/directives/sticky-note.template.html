@@ -1,0 +1,11 @@
+<div class="sticky-note"
+     ng-class="stickyNote.themeId"
+     z-index="stickyNote.zIndex"
+     drag
+     positionable px="stickyNote.position.x" py="stickyNote.position.y">
+    <div ng-transclude></div>
+    <textarea cols="30"
+              rows="10"
+              prevent-drag
+              ng-model="stickyNote.text"></textarea>
+</div>
