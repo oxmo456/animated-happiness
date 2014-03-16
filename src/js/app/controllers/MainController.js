@@ -1,4 +1,4 @@
-angular.module("app").controller("MainController", function ($scope, StickiesStorage,$cookies) {
+angular.module("app").controller("MainController", function ($scope, StickiesStorage, $cookies) {
 
     var STICKY_NOTES_THEMES = [
         {name: "Post-It", id: "post-it"},
@@ -21,18 +21,18 @@ angular.module("app").controller("MainController", function ($scope, StickiesSto
     function initialize() {
         var stickies = StickiesStorage.load();
         if (!stickies) {
-            stickies = [];
+            var stickyNote = createStickyNote(0);
+            stickyNote.text = "Hello MATE1 : )";
+            stickies = [stickyNote];
             StickiesStorage.save(stickies);
         }
         $scope.stickies = stickies;
         $scope.$watch("stickies", stickiesChange, true);
     }
 
-    $scope.addStickyNote = function () {
-        $cookies.POPO = 'oatmeal';
+    function createStickyNote(zIndex) {
 
-        var zIndex = $scope.stickies.length;
-        $scope.stickies.push({
+        return {
             text: "",
             zIndex: zIndex,
             themeId: DEFAULT_THEME_ID,
@@ -41,7 +41,11 @@ angular.module("app").controller("MainController", function ($scope, StickiesSto
                 x: 0,
                 y: 0
             }
-        });
+        };
+    }
+
+    $scope.addStickyNote = function () {
+        $scope.stickies.push(createStickyNote($scope.stickies.length));
     };
 
     $scope.editStickyNoteMeta = function (stickyNote) {
