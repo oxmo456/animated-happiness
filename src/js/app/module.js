@@ -1,1 +1,1 @@
-angular.module("app", ["utils", "bootstrap-ui", "stickies"]);
+angular.module("app", ["ngCookies", "utils", "bootstrap-ui", "stickies"]);

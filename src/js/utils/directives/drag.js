@@ -1,6 +1,6 @@
-angular.module("utils").directive("drag", function ($window) {
+angular.module("utils").directive("drag", function ($window, $document) {
 
-    var MOUSE_LEFT_BUTTON = 0;
+    var MOUSE_RIGHT_BUTTON = 2;
     var DRAGGED = "dragged";
     var windowElement = angular.element($window);
     var MOUSE_DOWN = "mousedown";
@@ -58,12 +58,12 @@ angular.module("utils").directive("drag", function ($window) {
             function windowElementMouseUp() {
                 element.removeClass(DRAGGED);
                 $window.cancelAnimationFrame(animationFrameRequestId);
-                windowElement.off("mousemove", windowMouseMove);
-                windowElement.off("mouseup", windowElementMouseUp);
+                $document.off("mousemove", windowMouseMove);
+                $document.off("mouseup", windowElementMouseUp);
             }
 
             function canStartDrag(event) {
-                return event.button === MOUSE_LEFT_BUTTON && controller.rawElementIsNotExcluded(event.target);
+                return (event.button < MOUSE_RIGHT_BUTTON) && controller.rawElementIsNotExcluded(event.target);
             }
 
             function elementMouseDown(event) {
@@ -72,8 +72,8 @@ angular.module("utils").directive("drag", function ($window) {
                     mouseX = event.clientX;
                     mouseY = event.clientY;
                     animationFrameRequestId = $window.requestAnimationFrame(update);
-                    windowElement.on(MOUSE_MOVE, windowMouseMove);
-                    windowElement.on(MOUSE_UP, windowElementMouseUp);
+                    $document.on(MOUSE_MOVE, windowMouseMove);
+                    $document.on(MOUSE_UP, windowElementMouseUp);
                 }
             }
 

@@ -1,3 +1,3 @@
 angular.module("app").run(function () {
-    console.log("HELLO...");
+    console.log("HELLO MATE1 ;)");
 });

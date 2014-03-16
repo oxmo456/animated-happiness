@@ -13,7 +13,6 @@ angular.module("stickies").directive("stickies", function () {
 
             $scope.mouseDown = function (stickyNote) {
 
-                console.log("mousedown...", stickyNote);
 
                 var stickyNoteZIndex = stickyNote.zIndex;
 
@@ -21,12 +20,10 @@ angular.module("stickies").directive("stickies", function () {
                 var biggestZindex = 0;
                 for (var i = 0, count = $scope.stickies.length; i < count; i++) {
                     var stickyNote = $scope.stickies[i];
-                    console.log(stickyNote);
                     biggestZindex = Math.max(biggestZindex, stickyNote.zIndex);
                     stickyNote.zIndex--;
                 }
                 stickyNote.zIndex = biggestZindex;
-                console.log($scope.stickies);
 
 
             };

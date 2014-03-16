@@ -25,8 +25,8 @@ angular.module("bootstrap-ui").directive("dateInput", function ($locale) {
 
     function extractDays() {
         var result = [];
-        var k = 31;
-        while (k--) {
+        var k = 32;
+        while (--k > 0) {
             result.push({value: k, label: k});
         }
         return result;
@@ -70,7 +70,7 @@ angular.module("bootstrap-ui").directive("dateInput", function ($locale) {
                 var newDate = new Date(scope.year, scope.month, scope.day);
                 scope.validDate = dateIsValid(newDate);
                 if (scope.validDate) {
-                    scope.date = new Date(scope.year, scope.month, scope.day).toISOString();
+                    scope.date = new Date(scope.year, scope.month, scope.day).getTime();
                 }
             }
 

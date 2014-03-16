@@ -1,4 +1,4 @@
-angular.module("app").controller("MainController", function ($scope, StickiesStorage) {
+angular.module("app").controller("MainController", function ($scope, StickiesStorage,$cookies) {
 
     var STICKY_NOTES_THEMES = [
         {name: "Post-It", id: "post-it"},
@@ -29,12 +29,14 @@ angular.module("app").controller("MainController", function ($scope, StickiesSto
     }
 
     $scope.addStickyNote = function () {
+        $cookies.POPO = 'oatmeal';
+
         var zIndex = $scope.stickies.length;
         $scope.stickies.push({
             text: "",
             zIndex: zIndex,
             themeId: DEFAULT_THEME_ID,
-            date: (new Date()).toISOString(),
+            date: (new Date()).getTime(),
             position: {
                 x: 0,
                 y: 0
