@@ -22,7 +22,7 @@ angular.module("app").controller("MainController", function ($scope, StickiesSto
         var stickies = StickiesStorage.load();
         if (!stickies) {
             var stickyNote = createStickyNote(0);
-            stickyNote.text = "Hello MATE1 : )";
+            stickyNote.text = "Hello mate1 : )";
             stickies = [stickyNote];
             StickiesStorage.save(stickies);
         }

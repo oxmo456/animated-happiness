@@ -11,21 +11,30 @@ angular.module("stickies").directive("stickies", function () {
         replace: true,
         controller: function ($scope) {
 
-            $scope.mouseDown = function (stickyNote) {
-
-
-                var stickyNoteZIndex = stickyNote.zIndex;
-
-
-                var biggestZindex = 0;
-                for (var i = 0, count = $scope.stickies.length; i < count; i++) {
-                    var stickyNote = $scope.stickies[i];
-                    biggestZindex = Math.max(biggestZindex, stickyNote.zIndex);
-                    stickyNote.zIndex--;
+            function findBiggestZIndex(stickyNotes) {
+                var result = 0;
+                for (var i = 0, count = stickyNotes.length; i < count; i++) {
+                    result = Math.max(result, stickyNotes[i].zIndex);
                 }
-                stickyNote.zIndex = biggestZindex;
+                return result;
+            }
 
+            function putStickyNoteOnTop(focusedStickyNote) {
+                var stickyNotes = $scope.stickies;
+                var biggestZIndex = findBiggestZIndex(stickyNotes);
+                if (focusedStickyNote.zIndex !== biggestZIndex) {
+                    for (var i = 0, count = stickyNotes.length; i < count; i++) {
+                        var stickyNote = stickyNotes[i];
+                        if (stickyNotes !== stickyNote && stickyNote.zIndex > focusedStickyNote.zIndex) {
+                            stickyNote.zIndex--;
+                        }
+                    }
+                    focusedStickyNote.zIndex = biggestZIndex;
+                }
+            }
 
+            $scope.mouseDown = function (stickyNote) {
+                putStickyNoteOnTop(stickyNote);
             };
 
         }
