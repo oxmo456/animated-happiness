@@ -2,7 +2,6 @@ angular.module("utils").directive("drag", function ($window, $document) {
 
     var MOUSE_RIGHT_BUTTON = 2;
     var DRAGGED = "dragged";
-    var windowElement = angular.element($window);
     var MOUSE_DOWN = "mousedown";
     var MOUSE_UP = "mouseup";
     var MOUSE_MOVE = "mousemove";

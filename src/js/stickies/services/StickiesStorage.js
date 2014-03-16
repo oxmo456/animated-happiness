@@ -1,4 +1,4 @@
-angular.module("app").service("StickiesStorage", function (JsonLocalStorage) {
+angular.module("stickies").service("StickiesStorage", function (JsonLocalStorage) {
 
     var STICKIES_STORAGE_KEY = "stickies";
 
