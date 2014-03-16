@@ -48,7 +48,14 @@ angular.module("app").controller("MainController", function ($scope, StickiesSto
     };
 
     $scope.deleteStickyNote = function (stickyNote) {
-        console.log("delete", stickyNote);
+        $scope.modal.show({confirme: function () {
+            var index = $scope.stickies.indexOf(stickyNote);
+            if (index !== -1) {
+                $scope.stickies.splice(index, 1);
+            }
+        }
+        }, "confirmDeletionModal");
+
     };
 
     $scope.colors = STICKY_NOTES_THEMES;

@@ -1,4 +1,5 @@
 angular.module("bootstrap-ui").directive("dateInput", function ($locale) {
+    //TODO handle invalid date input (31 february)
 
     var INVALID_DATE = "Invalid Date";
 
@@ -48,6 +49,7 @@ angular.module("bootstrap-ui").directive("dateInput", function ($locale) {
         },
         link: function (scope) {
 
+
             function initialize() {
                 scope.years = YEARS;
                 scope.months = MONTHS;
@@ -68,9 +70,7 @@ angular.module("bootstrap-ui").directive("dateInput", function ($locale) {
                 var newDate = new Date(scope.year, scope.month, scope.day);
                 scope.validDate = dateIsValid(newDate);
                 if (scope.validDate) {
-                    scope.seletedDate = new Date(scope.year, scope.month, scope.day).toISOString();
-                    console.log(scope.seletedDate);
-
+                    scope.date = new Date(scope.year, scope.month, scope.day).toISOString();
                 }
             }
 

@@ -39,9 +39,23 @@
             <div class="form-inline">
                 <div class="form-group">
                     <label>date</label>
+
                     <div date-input="stickyNote.date"></div>
                 </div>
             </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="confirmDeletionModal">
+        <div class="modal-header">
+            <button type="button" class="close" aria-hidden="true" ng-click="close()">×</button>
+            <h4 class="modal-title" id="myModalLabel">Confirm sticky note deletion</h4>
+        </div>
+        <div class="modal-body">
+            <label>Do you really want to delete this amazing note ?</label>
+            <br>
+            <button class="btn btn-danger" ng-click="confirme();close()">YES</button>
+            <button class="btn btn-default" ng-click="close()">NO</button>
         </div>
     </script>
 
