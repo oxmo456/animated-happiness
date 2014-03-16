@@ -11,6 +11,10 @@ angular.module("stickies").directive("stickies", function () {
         replace: true,
         controller: function ($scope) {
 
+            $scope.mouseDown = function (stickyNote) {
+                console.log(stickyNote);
+            };
+
         }
     };
 

@@ -29,8 +29,10 @@ angular.module("app").controller("MainController", function ($scope, StickiesSto
     }
 
     $scope.addStickyNote = function () {
+        var zIndex = $scope.stickies.length;
         $scope.stickies.push({
             text: "",
+            zIndex: zIndex,
             themeId: DEFAULT_THEME_ID,
             date: (new Date()).toISOString(),
             position: {
@@ -45,6 +47,10 @@ angular.module("app").controller("MainController", function ($scope, StickiesSto
             stickyNote: stickyNote,
             themes: STICKY_NOTES_THEMES
         }, "editStickyNoteModal");
+    };
+
+    $scope.deleteAllStickyNotes = function () {
+        $scope.stickies = [];
     };
 
     $scope.deleteStickyNote = function (stickyNote) {

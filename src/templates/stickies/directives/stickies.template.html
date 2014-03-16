@@ -1,5 +1,6 @@
 <div class="stickies">
     <div ng-repeat="stickyNote in stickies track by $index"
+         ng-mousedown="mouseDown(stickyNote)"
          sticky-note="stickyNote">
         <div class="tool-bar">
         <span class="delete-button" ng-click="onDeleteStickyNote({stickyNote:stickyNote})">
