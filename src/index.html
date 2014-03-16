@@ -2,11 +2,16 @@
 <html>
 <head>
     <title>Stickies</title>
+    <!-- fix IE compatibility mode issues with AngularJS -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/styles.css"/>
     <link rel="stylesheet" href="css/stickies.css"/>
 </head>
-<body>
+<!--[if IE]>
+<body onselectstart="return false;"><![endif]-->
+<!--[if !IE]> -->
+<body> <!-- <![endif]-->
 <div id="ng-app" ng-app="app" ng-controller="MainController">
 
     <div class="navbar navbar-default">

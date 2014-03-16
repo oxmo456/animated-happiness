@@ -41,8 +41,8 @@ angular.module("utils").directive("drag", function ($window, $document) {
             }
 
             function windowMouseMove(event) {
-                dx = event.clientX - mouseX;
-                dy = event.clientY - mouseY;
+                dx += event.clientX - mouseX;
+                dy += event.clientY - mouseY;
                 mouseX = event.clientX;
                 mouseY = event.clientY;
                 animationFrameRequestId = $window.requestAnimationFrame(update);
@@ -52,6 +52,7 @@ angular.module("utils").directive("drag", function ($window, $document) {
                 scope.$apply(function () {
                     positionableController.increasePositionX(dx);
                     positionableController.increasePositionY(dy);
+                    dx = dy = 0;
                 });
             }
 
@@ -71,6 +72,7 @@ angular.module("utils").directive("drag", function ($window, $document) {
                     element.addClass(DRAGGED);
                     mouseX = event.clientX;
                     mouseY = event.clientY;
+                    dx = dy = 0;
                     animationFrameRequestId = $window.requestAnimationFrame(update);
                     $document.on(MOUSE_MOVE, windowMouseMove);
                     $document.on(MOUSE_UP, windowElementMouseUp);
