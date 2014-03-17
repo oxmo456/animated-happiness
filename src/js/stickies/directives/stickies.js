@@ -25,7 +25,7 @@ angular.module("stickies").directive("stickies", function () {
                 if (focusedStickyNote.zIndex !== biggestZIndex) {
                     for (var i = 0, count = stickyNotes.length; i < count; i++) {
                         var stickyNote = stickyNotes[i];
-                        if (stickyNotes !== stickyNote && stickyNote.zIndex > focusedStickyNote.zIndex) {
+                        if (stickyNote !== focusedStickyNote && stickyNote.zIndex > focusedStickyNote.zIndex) {
                             stickyNote.zIndex--;
                         }
                     }
